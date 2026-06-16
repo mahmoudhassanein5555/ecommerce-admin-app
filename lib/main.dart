@@ -1,3 +1,4 @@
+import 'package:ecommerce_admin_app/core/dashboar_layout/presentation/view/dashboard_screen.dart';
 import 'package:ecommerce_admin_app/core/di/servicelocator.dart';
 import 'package:ecommerce_admin_app/features/auth/presentation/view/login_screen.dart';
 import 'package:ecommerce_admin_app/features/auth/presentation/view_model/login_bloc.dart';
@@ -28,10 +29,15 @@ class MyApp extends StatelessWidget {
           brightness: Brightness.dark,
         ),
       ),
-      home: BlocProvider(
-        create: (context) => getIt<LoginBloc>(),
-        child: const LoginScreen(),
-      ),
+      // home: BlocProvider(
+      //   create: (context) => getIt<LoginBloc>(),
+      //   child: const LoginScreen(),
+      // ),
+      home: const DashboardScreen(),
+      //  BlocProvider(
+      //   create: (context) => getIt<LoginBloc>(),
+      //   child: const LoginScreen(),
+      // ),
     );
   }
 }
