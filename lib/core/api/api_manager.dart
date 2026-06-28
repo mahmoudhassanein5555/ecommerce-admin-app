@@ -1,3 +1,5 @@
+import 'dart:developer' as developer;
+
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
@@ -32,6 +34,8 @@ class ApiManager {
         error: true,
         compact: true,
         maxWidth: 90,
+        logPrint: (object) =>
+            developer.log(object.toString(), name: 'PrettyDioLogger'),
       ),
     );
   }
@@ -46,7 +50,14 @@ class ApiManager {
     return dio.get(
       endPoint,
       queryParameters: queryParameters,
-      options: (options ?? Options()).copyWith(headers: headers),
+      options: (options ?? Options()).copyWith(
+        headers: {
+          ...dio
+              .options
+              .headers, // يدمج الـ Headers الأساسية لدايو (Accept و Content-Type)
+          ...?headers, // يضيف عليها الـ Headers الخاصة بالريكويست ده لو موجودة
+        },
+      ),
     );
   }
 
