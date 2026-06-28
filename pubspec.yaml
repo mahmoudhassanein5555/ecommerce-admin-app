@@ -41,11 +41,11 @@ dev_dependencies:
 flutter:
   uses-material-design: true
 
-  # تعريف مجلد الـ assets عشان يقرأ ملف الـ .lottie المحترف
+ 
   assets:
     - assets/animations/
 
-  # رصة الخطوط الصايعة لـ SwiftBuy
+ 
   fonts:
     - family: SwiftBuyBrand
       fonts:
