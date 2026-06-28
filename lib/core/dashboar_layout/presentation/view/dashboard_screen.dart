@@ -1,7 +1,11 @@
 import 'package:ecommerce_admin_app/core/dashboar_layout/presentation/widgets/custom_app_bar_widget.dart';
 import 'package:ecommerce_admin_app/core/dashboar_layout/presentation/widgets/custom_card_widget.dart';
+import 'package:ecommerce_admin_app/core/di/servicelocator.dart';
+import 'package:ecommerce_admin_app/features/products/presentation/view/products_screen.dart';
+import 'package:ecommerce_admin_app/features/products/presentation/view_model/products_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
@@ -134,6 +138,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   child: CustomAppBarWidget(
                     menuItems: menuItems,
                     selectedIndex: selectedIndex,
+                  ),
+                ),
+                Expanded(
+                  child: BlocProvider(
+                    create: (context) => getIt<ProductsBloc>(),
+                    child: const ProductsScreen(),
                   ),
                 ),
               ],

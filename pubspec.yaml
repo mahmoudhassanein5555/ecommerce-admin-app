@@ -5,7 +5,7 @@ publish_to: "none"
 version: 1.0.0+1
 
 environment:
-  sdk: ^3.10.8
+  sdk: ">=3.12.0 <4.0.0"
 
 dependencies:
   flutter:
@@ -16,25 +16,34 @@ dependencies:
   dio: ^5.3.0
   dartz: ^0.10.1
   flutter_screenutil: ^5.9.0
-  get_it: ^7.6.0
-  injectable: ^2.3.2
+  get_it: ^9.2.1
+  injectable: ^3.0.0
   flutter_secure_storage: ^9.0.0
   meta: ^1.9.0
   cached_network_image: ^3.3.1
-  pretty_dio_logger: ^1.3.1
+  pretty_dio_logger: ^1.4.0
   connectivity_plus: ^5.0.2
   equatable: ^2.0.5
   toastification: ^3.2.0
+  internet_connection_checker_plus: ^3.1.0
+  wolt_modal_sheet: ^0.11.0
+  file_picker: ^11.0.2
+  rxdart: ^0.28.0
+  lottie: ^3.4.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^3.0.0
-  build_runner: ^2.4.6
-  injectable_generator: ^2.10.0
+  build_runner: ^2.4.9
+  injectable_generator: ^3.1.0
 
 flutter:
   uses-material-design: true
+
+  # تعريف مجلد الـ assets عشان يقرأ ملف الـ .lottie المحترف
+  assets:
+    - assets/animations/
 
   # رصة الخطوط الصايعة لـ SwiftBuy
   fonts:
