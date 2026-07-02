@@ -4,6 +4,26 @@ class AppStrings {
   static const String manageProductSubheadline =
       'Manage your product listings, pricing, and availability.';
   static const String addNewProduct = 'Add New Product';
+  static const String categoriesManagement = 'Categories Management';
+  static const String manageCategoriesSubheadline =
+      'Manage your category listings, images, and products.';
+  static const String addNewCategory = 'Add New Category';
+  static const String noProductsFoundInCategory =
+      'No products found in this category';
+  static const String backToCategories = 'Back to Categories';
+  static const String categoryUnexpectedStateMessage =
+      'Unexpected state or something went wrong';
+  static const String reloadCategories = 'Reload Categories';
+  static const String deleteCategoryTitle = 'Delete Category';
+  static const String deleteCategoryConfirmation =
+      'Are you sure you want to delete this category? This action cannot be undone.';
+  static const String delete = 'Delete';
+  static const String addCategoryTitle = 'Add Category';
+  static const String updateCategoryTitle = 'Update Category';
+  static const String categoryNameLabel = 'Category Name *';
+  static const String categoryNameHint = 'e.g. Electronics';
+  static const String categoryImageLabel = 'Category Image';
+  static const String saveCategory = 'Save Category';
 
   // 🔍 خانة البحث والفلتر
   static const String searchProductsHint = 'Search products...';
