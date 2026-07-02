@@ -23,10 +23,12 @@ This project is currently in active development. Core architecture and foundatio
   - Login flow
   - UI and state handling
   - Basic authentication integration
-- [ ] Product Management
-  - In Progress
-- [ ] Category Management
-  - In Progress
+- [x] Product Management
+  - Core product features implemented
+  - Product listing and related flows are ready
+- [x] Category Management
+  - Category management flow implemented
+  - Category-related UI and logic are in place
 - [ ] Dashboard Overview
   - Coming Soon
 - [ ] Orders & Sales Management
