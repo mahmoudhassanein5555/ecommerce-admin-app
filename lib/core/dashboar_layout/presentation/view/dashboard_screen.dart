@@ -1,6 +1,8 @@
 import 'package:ecommerce_admin_app/core/dashboar_layout/presentation/widgets/custom_app_bar_widget.dart';
 import 'package:ecommerce_admin_app/core/dashboar_layout/presentation/widgets/custom_card_widget.dart';
 import 'package:ecommerce_admin_app/core/di/servicelocator.dart';
+import 'package:ecommerce_admin_app/features/categories/presentation/view/categories_screen.dart';
+import 'package:ecommerce_admin_app/features/categories/presentation/view_model/categories_bloc.dart';
 import 'package:ecommerce_admin_app/features/products/presentation/view/products_screen.dart';
 import 'package:ecommerce_admin_app/features/products/presentation/view_model/products_bloc.dart';
 import 'package:flutter/material.dart';
@@ -63,7 +65,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       255,
                       255,
                       255,
-                    ).withOpacity(0.6),
+                    ).withValues(alpha: 0.6),
                     fontSize: 13,
                     fontWeight: FontWeight.w500,
                     fontFamily: 'SwiftBuyBody',
@@ -141,9 +143,31 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   ),
                 ),
                 Expanded(
-                  child: BlocProvider(
-                    create: (context) => getIt<ProductsBloc>(),
-                    child: const ProductsScreen(),
+                  child: Builder(
+                    builder: (context) {
+                      switch (selectedIndex) {
+                        case 1:
+                          return BlocProvider(
+                            create: (context) => getIt<ProductsBloc>(),
+                            child: const ProductsScreen(),
+                          );
+                        case 2:
+                          return BlocProvider(
+                            create: (context) => getIt<CategoriesBloc>(),
+                            child: const CategoriesScreen(),
+                          );
+                        default:
+                          return const Center(
+                            child: Text(
+                              'Welcome to SwiftBuy Dashboard',
+                              style: TextStyle(
+                                fontSize: 24,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          );
+                      }
+                    },
                   ),
                 ),
               ],

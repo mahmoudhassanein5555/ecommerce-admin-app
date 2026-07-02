@@ -10,13 +10,19 @@ class AppColors {
   static const Color textBrown = Color(0xff493603);
   static const Color loaderAmber = Color(0xFFB45309);
   static const Color loaderBackground = Color(0xFFE2E8F0);
+  static const Color categoryAccent = Color(0xFFB45309);
+  static const Color categoryAccentBackground = Color(0xFFE2E8F0);
   static const Color visibilityColor = Color(0xFFF1ECE4);
-  static const Color goldAccent = Color(0xffC59A44); 
+  static const Color goldAccent = Color(0xffC59A44);
 
   // 🌫️ الرماديات والحدود المستخرجة بالملّي
-  static const Color textDarkSlate = Color(0xFF1E293B); 
-  static const Color iconDefaultGray = Color(0xff8A676B); 
-  static const Color iconSlateGray = Color(0xFF64748B); 
+  static const Color grey300 = Color(0xFFE0E0E0);
+  static const Color grey400 = Color(0xFF9CA3AF);
+  static const Color grey500 = Color(0xFF9E9E9E);
+  static const Color grey600 = Color(0xFF757575);
+  static const Color textDarkSlate = Color(0xFF1E293B);
+  static const Color iconDefaultGray = Color(0xff8A676B);
+  static const Color iconSlateGray = Color(0xFF64748B);
 
   // ✨ ألوان الـ SDK الثابتة المستدعاة في ملفاتك
   static const Color white = Colors.white;

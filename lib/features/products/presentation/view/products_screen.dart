@@ -228,16 +228,13 @@ class _ProductsScreenState extends State<ProductsScreen> {
                           },
                         );
                       } else if (state is ProductsLoading) {
-                        return const Center(
-                          child: CircularProgressIndicator(
-                            strokeWidth: 4.5,
-                            valueColor: AlwaysStoppedAnimation<Color>(
-                              AppColors.loaderAmber,
-                            ),
-                            backgroundColor: AppColors.loaderBackground,
-                            strokeCap: StrokeCap.round,
-                          ),
-                        );
+                        return Center(
+                        child: SizedBox(
+                          width: 300.w,
+                          height: 300.h,
+                          child: Lottie.asset('assets/animations/loading.json'),
+                        ),
+                      );
                       } else if (state is SearchProductsEmpty) {
                         return Center(
                           child: Column(
