@@ -33,6 +33,8 @@ This project is currently in active development. Core architecture and foundatio
   - Coming Soon
 - [ ] Orders & Sales Management
   - Coming Soon
+- [ ] Chat Support
+  - Planned after Orders
 - [ ] User & Role Management
   - Coming Soon
 
