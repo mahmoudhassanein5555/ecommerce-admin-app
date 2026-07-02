@@ -1,16 +1,59 @@
-# ecommerce_admin_app
+https://github.com/user-attachments/assets/97d8eaf2-62da-45b4-b2b3-6355b48212fb
 
-A new Flutter project.
+ Categories Feature
 
-## Getting Started
+This module manages categories in the admin app, including listing, creating, updating, deleting, and browsing products by category.
 
-This project is a starting point for a Flutter application.
+## Overview
 
-A few resources to get you started if this is your first Flutter project:
+The categories feature follows a clean architecture structure:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- Data layer: remote data source, DTOs, and repository implementation
+- Domain layer: entities, repository contract, and use cases
+- Presentation layer: screen, BLoC, events, states, and UI widgets
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Folder Structure
+
+- data/
+  - datasources/: category remote data source interfaces and implementations
+  - models/: category DTOs
+  - repository/: repository implementation
+- domain/
+  - entites/: category entity
+  - repositories/: repository contract
+  - usecases/: add, get, update, delete, and products-by-category use cases
+- presentation/
+  - view/: categories screen UI
+  - view_model/: BLoC, events, and states
+  - widgets/: reusable category UI components
+
+## Main Capabilities
+
+- Display a list of categories
+- Add a new category
+- Update an existing category
+- Delete a category
+- View products related to a selected category
+
+## Main Flow
+
+1. The categories screen requests data through the BLoC.
+2. The BLoC triggers the appropriate use case.
+3. The repository communicates with the remote data source.
+4. The UI updates based on success or failure states.
+
+## Key Classes
+
+- CategoriesScreen: main UI for managing categories
+- CategoriesBloc: handles category-related state and actions
+- GetCategoriesUseCase: fetches categories
+- AddCategoryUseCase: creates a new category
+- UpdateCategoryUseCase: updates a category
+- DeleteCategoryUseCase: removes a category
+- GetProductsByCategoryUseCase: retrieves products linked to a category
+
+## Notes
+
+- State management is handled with Flutter BLoC.
+- Dependency injection is used through Injectable.
+- The feature is designed to work as part of the larger admin dashboard.
