@@ -3,6 +3,8 @@ import 'package:ecommerce_admin_app/core/dashboar_layout/presentation/widgets/cu
 import 'package:ecommerce_admin_app/core/di/servicelocator.dart';
 import 'package:ecommerce_admin_app/features/categories/presentation/view/categories_screen.dart';
 import 'package:ecommerce_admin_app/features/categories/presentation/view_model/categories_bloc.dart';
+import 'package:ecommerce_admin_app/features/orders/presentation/view/orders_view.dart';
+import 'package:ecommerce_admin_app/features/orders/presentation/view_model/orders_bloc.dart';
 import 'package:ecommerce_admin_app/features/products/presentation/view/products_screen.dart';
 import 'package:ecommerce_admin_app/features/products/presentation/view_model/products_bloc.dart';
 import 'package:flutter/material.dart';
@@ -155,6 +157,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           return BlocProvider(
                             create: (context) => getIt<CategoriesBloc>(),
                             child: const CategoriesScreen(),
+                          );
+                        case 3:
+                          return BlocProvider(
+                            create: (context) => getIt<OrdersBloc>(),
+                            child:const OrdersView(),
                           );
                         default:
                           return const Center(
