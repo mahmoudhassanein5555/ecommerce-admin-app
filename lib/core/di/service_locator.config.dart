@@ -9,6 +9,7 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'package:cloud_firestore/cloud_firestore.dart' as _i974;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
@@ -39,6 +40,16 @@ import '../../features/categories/domain/usecases/update_category_use_case.dart'
     as _i610;
 import '../../features/categories/presentation/view_model/categories_bloc.dart'
     as _i171;
+import '../../features/orders/data/data_source/orders_data_source.dart'
+    as _i872;
+import '../../features/orders/data/data_source/orders_data_source_imp.dart'
+    as _i337;
+import '../../features/orders/data/repository/order_repo_imp.dart' as _i21;
+import '../../features/orders/domain/repository/orders_repo.dart' as _i132;
+import '../../features/orders/domain/use_case/get_orders_use_case.dart'
+    as _i590;
+import '../../features/orders/presentation/view_model/orders_bloc.dart'
+    as _i840;
 import '../../features/products/data/datasources/products_remote_data_source.dart'
     as _i646;
 import '../../features/products/data/datasources/products_remote_data_source_imp.dart'
@@ -87,6 +98,9 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i1050.NetworkInfo>(),
       ),
     );
+    gh.lazySingleton<_i872.OrdersDataSource>(
+      () => _i337.OrdersDataSourceImp(gh<_i974.FirebaseFirestore>()),
+    );
     gh.factory<_i37.LoginUseCase>(
       () => _i37.LoginUseCase(authRepo: gh<_i502.LoginRepo>()),
     );
@@ -95,6 +109,9 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i646.ProductsRemoteDataSource>(),
         gh<_i1050.NetworkInfo>(),
       ),
+    );
+    gh.lazySingleton<_i132.OrdersRepo>(
+      () => _i21.OrderRepoImp(gh<_i872.OrdersDataSource>()),
     );
     gh.factory<_i542.LoginBloc>(() => _i542.LoginBloc(gh<_i37.LoginUseCase>()));
     gh.factory<_i809.AddCategoryUseCase>(
@@ -112,6 +129,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i610.UpdateCategoryUseCase>(
       () => _i610.UpdateCategoryUseCase(gh<_i525.CategoriesRepo>()),
     );
+    gh.factory<_i590.GetOrdersUseCase>(
+      () => _i590.GetOrdersUseCase(gh<_i132.OrdersRepo>()),
+    );
     gh.factory<_i1054.UploadImageUseCase>(
       () => _i1054.UploadImageUseCase(gh<_i361.ProductsRepo>()),
     );
@@ -126,6 +146,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i796.UpdateProductUseCase>(
       () => _i796.UpdateProductUseCase(gh<_i361.ProductsRepo>()),
+    );
+    gh.factory<_i840.OrdersBloc>(
+      () => _i840.OrdersBloc(gh<_i590.GetOrdersUseCase>()),
     );
     gh.factory<_i171.CategoriesBloc>(
       () => _i171.CategoriesBloc(
