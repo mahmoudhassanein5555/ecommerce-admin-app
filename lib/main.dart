@@ -1,18 +1,13 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:ecommerce_admin_app/core/dashboar_layout/presentation/view/dashboard_screen.dart';
 import 'package:ecommerce_admin_app/core/di/servicelocator.dart';
 import 'package:ecommerce_admin_app/features/auth/presentation/view/login_screen.dart';
-import 'package:ecommerce_admin_app/features/auth/presentation/view_model/login_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'package:firebase_core/firebase_core.dart'; // ➔ لازم تعمل Import للـ core الأول
+import 'package:firebase_core/firebase_core.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // 1. ➔ لازم تهيأ الفايربيز الأول وتباصي الـ Options بتاعة الـ Web
   await Firebase.initializeApp(
     options: const FirebaseOptions(
       apiKey: "AIzaSyAvj4Nkzoffq8AcQz7AVsVvoYrt6H8wXA",
@@ -24,10 +19,6 @@ void main() async {
     ),
   );
 
-  // 2. ➔ بعد ما الفايربيز قام، تقدر تنادي على الـ Firestore يمسح الكاش عادي جداً
-  // await FirebaseFirestore.instance.clearPersistence();
-
-  // 3. تهيئة الـ Dependency Injection بتاعك
   configureDependencies();
 
   runApp(const MyApp());
