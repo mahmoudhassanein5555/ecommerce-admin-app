@@ -39,30 +39,22 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: const Size(
-        1440,
-        900,
-      ), // 🖥️ المقاس المثالي للـ Web والـ Tablets
+      designSize: const Size(1440, 900),
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (_, child) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
-          title: 'SwiftBuy Admin', // 🎯 اسم الأبلكيشن المظبوط بتاعك
+          title: 'SwiftBuy Admin',
           theme: ThemeData(
-            useMaterial3: true, // ✨ تفعيل الـ Material 3 من كودك القديم
-            fontFamily: 'SwiftBuyBody', // 🔤 الخط المخصص بتاع البراند بتاعك
-            scaffoldBackgroundColor: const Color(
-              0xFFF8F9FA,
-            ), // تثبيت خلفية السكافولد
-            // textTheme: Typography.englishLike2018.apply(
-            //   fontSizeFactor: 1.sp,
-            // ), // دمج الـ sp للخطوط كلها بشكل ديناميكي
+            useMaterial3: true,
+            fontFamily: 'SwiftBuyBody',
+            scaffoldBackgroundColor: const Color(0xFFF8F9FA),
           ),
           home: child,
         );
       },
-      child: const DashboardScreen(),
+      child: const LoginScreen(),
     );
   }
 }
