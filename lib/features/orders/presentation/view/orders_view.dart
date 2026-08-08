@@ -22,14 +22,9 @@ class _OrdersViewState extends State<OrdersView> {
   OrderEntity? _selectedOrder;
 
   @override
-  initState() {
+  void initState() {
     super.initState();
-    print("OrdersView initState called");
-    print(
-      "***************************************************************************************************",
-    );
     context.read<OrdersBloc>().add(const GetOrdersEvent());
-    print("OrdersView initState called");
   }
 
   // static const _orders = <OrderRowData>[

@@ -22,25 +22,30 @@ class OrderDto extends OrderEntity {
 
   factory OrderDto.fromJson(Map<String, dynamic> json) {
     return OrderDto(
-      orderId: json["orderId"] ?? "",
-      userId: json["userId"] ?? 0,
+      orderId: json["orderId"]?.toString() ?? "",
+      userId: json["userId"] is int
+          ? json["userId"] as int
+          : (int.tryParse(json["userId"]?.toString() ?? '') ?? 0),
       totalAmount: (json["totalAmount"] as num?)?.toDouble() ?? 0.0,
-      orderStatus: json["orderStatus"] ?? '',
-      orderDate: json["createdAt"] != null
-          ? (json["createdAt"] as Timestamp).toDate()
-          : DateTime.now(),
-      items: json["items"] != null
+      orderStatus: json["orderStatus"]?.toString() ?? '',
+      orderDate: json["orderDate"] != null && json["orderDate"] is Timestamp
+          ? (json["orderDate"] as Timestamp).toDate()
+          : (json["createdAt"] != null && json["createdAt"] is Timestamp
+              ? (json["createdAt"] as Timestamp).toDate()
+              : DateTime.now()),
+      items: json["items"] != null && json["items"] is List
           ? (json["items"] as List<dynamic>)
-                .map((e) => OrderItemDto.fromJson(e as Map<String, dynamic>))
-                .toList()
+              .map((e) => OrderItemDto.fromJson(e as Map<String, dynamic>))
+              .toList()
           : [],
       paymentId: json["paymentId"]?.toString() ?? '',
-      userName: json["userName"] ?? '',
-      customerEmail: json["customerEmail"] ?? '',
-      customerPhone: json["customerPhone"] ?? '',
-      cardLastDigits: json["cardLastDigits"] ?? '',
-      subtotal: json["subtotal"] ?? 0.0,
-      shippingAddress: json["shippingAddress"] != null
+      userName: json["userName"]?.toString() ?? '',
+      customerEmail: json["customerEmail"]?.toString() ?? '',
+      customerPhone: json["customerPhone"]?.toString() ?? '',
+      cardLastDigits: json["cardLastDigits"]?.toString() ?? '',
+      subtotal: (json["subtotal"] as num?)?.toDouble() ?? 0.0,
+      shippingAddress: json["shippingAddress"] != null &&
+              json["shippingAddress"] is Map<String, dynamic>
           ? ShippingAddressDto.fromJson(
               json["shippingAddress"] as Map<String, dynamic>,
             )
@@ -60,7 +65,6 @@ class OrderDto extends OrderEntity {
       "userId": userId,
       "totalAmount": totalAmount,
       "orderStatus": orderStatus,
-
       "createdAt": Timestamp.fromDate(orderDate),
       "items": items.map((e) => (e as OrderItemDto).toJson()).toList(),
       "paymentId": paymentId,
@@ -79,11 +83,11 @@ class ShippingAddressDto extends ShippingAddressEntity {
   });
   factory ShippingAddressDto.fromJson(Map<String, dynamic> json) {
     return ShippingAddressDto(
-      street: json["street"] ?? '',
-      city: json["city"] ?? '',
-      state: json["state"] ?? '',
-      zipCode: json["zipCode"] ?? '',
-      country: json["country"] ?? '',
+      street: json["street"]?.toString() ?? '',
+      city: json["city"]?.toString() ?? '',
+      state: json["state"]?.toString() ?? '',
+      zipCode: json["zipCode"]?.toString() ?? '',
+      country: json["country"]?.toString() ?? '',
     );
   }
 
@@ -110,12 +114,14 @@ class OrderItemDto extends OrderItemEntity {
 
   factory OrderItemDto.fromJson(Map<String, dynamic> json) {
     return OrderItemDto(
-      quantity: json["quantity"] ?? 0,
+      quantity: (json["quantity"] as num?)?.toInt() ?? 0,
       price: (json["price"] as num?)?.toDouble() ?? 0.0,
-      image: json["image"] ?? '',
-      productId: json["productId"] ?? 0,
-      productTitle: json["productTitle"] ?? '',
-      sku: '',
+      image: json["image"]?.toString() ?? '',
+      productId: json["productId"] is int
+          ? json["productId"] as int
+          : (int.tryParse(json["productId"]?.toString() ?? '') ?? 0),
+      productTitle: json["productTitle"]?.toString() ?? '',
+      sku: json["sku"]?.toString() ?? '',
     );
   }
 
@@ -126,6 +132,7 @@ class OrderItemDto extends OrderItemEntity {
       "image": image,
       "productId": productId,
       "productTitle": productTitle,
+      "sku": sku,
     };
   }
 }

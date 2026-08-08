@@ -64,11 +64,27 @@ class AppColors {
   static const Color iconDefaultGray = Color(0xff8A676B);
   static const Color iconSlateGray = Color(0xFF64748B);
 
+  // 💬 ألوان ميزة المحادثات (Chat Feature)
+  static const Color chatGoldAccent = Color(0xFFC59A44);
+  static const Color chatBackground = Color(0xFFF7F8FA);
+  static const Color chatBorder = Color(0xFFE0E0E0);
+  static const Color chatAvatarBg = Color(0xFF9C7B3C);
+  static const Color chatAttachmentBg = Color(0xFFF9F7F2);
+  static const Color chatTagBg = Color(0xFFF3F4F6);
+  static const Color chatGreyBorder = Color(0xFFE5E7EB);
+  static const Color onlineGreen = Color(0xFF22C55E);
+  static const Color grey100 = Color(0xFFF3F4F6);
+  static const Color grey200 = Color(0xFFE5E7EB);
+  static const Color grey700 = Color(0xFF374151);
+  static const Color black87 = Color(0xDD000000);
+
   // ✨ ألوان الـ SDK الثابتة المستدعاة في ملفاتك
   static const Color white = Colors.white;
   static const Color black = Colors.black;
   static const Color grey = Colors.grey;
   static const Color red = Colors.red;
   static const Color blue = Colors.blue;
+  static const Color green = Colors.green;
+  static const Color brown = Colors.brown;
   static const Color transparent = Colors.transparent;
 }

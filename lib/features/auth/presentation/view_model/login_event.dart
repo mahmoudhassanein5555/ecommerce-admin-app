@@ -17,3 +17,5 @@ class LoginButtonPressed extends LoginEvent {
   @override
   List<Object?> get props => [loginEntityReq];
 }
+
+class ProfileDataEvent extends LoginEvent {}

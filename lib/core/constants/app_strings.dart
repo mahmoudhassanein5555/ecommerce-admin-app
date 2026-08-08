@@ -107,4 +107,30 @@ class AppStrings {
       'Main Product Image (max. 800×400px)';
   static const String cancel = 'Cancel';
   static const String saveProduct = 'Save Product';
+
+  // 💬 ميزة المحادثات (Chat Feature)
+  static const String messages = 'Messages';
+  static const String searchMessagesHint = 'Search messages...';
+  static const String selectChatToStartMessaging =
+      'Select a chat to start messaging';
+  static const String customerDefaultName = 'Customer';
+  static const String online = 'Online';
+  static const String customerIdPrefix = 'Customer ID: ';
+  static const String typeMessageHint = 'Type a message...';
+  static const String addNoteOrSendProductHint =
+      'Add a note or send this product...';
+  static const String attachedProductLabel = 'Attached Product';
+  static const String attachProductTooltip = 'Attach Product';
+  static const String removeAttachmentTooltip = 'Remove Attachment';
+  static const String selectProductToAttachTitle =
+      'Select a Product to Attach';
+  static const String selectProductToAttachSubtitle =
+      'Choose a product from your catalog to share with customer';
+  static const String retry = 'Retry';
+  static const String defaultProductAttachmentTitle =
+      'Wireless Noise-Cancelling Headphones';
+  static const String defaultAdminId = 'admin';
+  static const String defaultAdminName = 'Admin';
+  static const String noProductsFound = 'No products found';
+
 }

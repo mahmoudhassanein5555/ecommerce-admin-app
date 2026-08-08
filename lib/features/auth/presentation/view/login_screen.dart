@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 import 'dart:ui';
+import 'package:ecommerce_admin_app/core/dashboar_layout/presentation/view/dashboard_screen.dart';
 import 'package:ecommerce_admin_app/core/utils/app_toasts.dart';
 import 'package:ecommerce_admin_app/core/utils/widgets/custom_text_form_field.dart';
 import 'package:ecommerce_admin_app/features/auth/domain/entites/auth_entity_req.dart';
@@ -210,26 +211,19 @@ class _LoginScreenState extends State<LoginScreen>
                                           'You have been logged in successfully.',
                                       type: ToastificationType.success,
                                     );
+
                                     isLoading = false;
                                     Navigator.pushReplacement(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) => const Scaffold(
-                                          body: Center(
-                                            child: Text(
-                                              'Login successful',
-                                              style: TextStyle(
-                                                fontFamily: 'SwiftBuyBrand',
-                                                fontSize: 54,
-                                                fontWeight: FontWeight.bold,
-                                                color: Color(0xff493603),
-                                                letterSpacing: 1.2,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
+                                        builder: (context) =>
+                                            const DashboardScreen(),
                                       ),
                                     );
+                                    // Future.delayed(const Duration(seconds: 2));
+                                    // context.read<LoginBloc>().add(
+                                    //   ProfileDataEvent(),
+                                    // );
                                   } else if (state is LoginFailure) {
                                     AppToast.showToast(
                                       context: context,
