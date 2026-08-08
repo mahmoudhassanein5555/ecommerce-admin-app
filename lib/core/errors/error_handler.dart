@@ -1,11 +1,10 @@
-import 'package:cloud_firestore/cloud_firestore.dart'; // مهم جداً عشان يقفش النوع
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecommerce_admin_app/core/errors/error.dart';
 import 'package:ecommerce_admin_app/core/failure/failure.dart';
 
 class ErrorHandler {
   static Failure handle(dynamic exception) {
     if (exception is FirebaseException) {
-      // ➔ اللقطة الجديدة: بنقفش أخطاء الفايربيز ونبعتها للدالة المخصصة لها
       return _handleFirebaseError(exception);
     } else if (exception is RemoteException) {
       return _handleRemoteError(exception.errormessage);
@@ -16,7 +15,6 @@ class ErrorHandler {
     }
   }
 
-  // ➔ دالة صايعة مخصصة لترجمة أكواد الفايربيز باللغة اللي تحبها
   static Failure _handleFirebaseError(FirebaseException exception) {
     switch (exception.code) {
       case 'permission-denied':
@@ -28,7 +26,6 @@ class ErrorHandler {
       case 'deadline-exceeded':
         return Failure("Connection timed out. The server is not responding.");
       default:
-        // لو كود تاني مش معمول له هندلة، بنرجع الرسالة اللي جاية من السيرفر نفسه
         return Failure(exception.message ?? "A database error occurred.");
     }
   }

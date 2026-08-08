@@ -12,12 +12,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart' as _i974;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
+import 'package:shared_preferences/shared_preferences.dart' as _i460;
 
 import '../../features/auth/data/datasources/login_data_source.dart' as _i605;
 import '../../features/auth/data/datasources/login_data_source_impl.dart'
     as _i701;
 import '../../features/auth/data/repository/login_repo_imp.dart' as _i201;
 import '../../features/auth/domain/repositories/login_repo.dart' as _i502;
+import '../../features/auth/domain/usecases/get_profile_data_use_case.dart'
+    as _i910;
 import '../../features/auth/domain/usecases/login_use_case.dart' as _i37;
 import '../../features/auth/presentation/view_model/login_bloc.dart' as _i542;
 import '../../features/categories/data/datasources/categories_remote_data_source.dart'
@@ -40,6 +43,18 @@ import '../../features/categories/domain/usecases/update_category_use_case.dart'
     as _i610;
 import '../../features/categories/presentation/view_model/categories_bloc.dart'
     as _i171;
+import '../../features/chats/data/data_source/chats_data_source.dart' as _i0;
+import '../../features/chats/data/data_source/chats_data_source_imp.dart'
+    as _i316;
+import '../../features/chats/data/repository/chat_repo_imp.dart' as _i713;
+import '../../features/chats/domain/repository/chat_repo.dart' as _i438;
+import '../../features/chats/domain/use_case/get_chat_messages_use_case.dart'
+    as _i113;
+import '../../features/chats/domain/use_case/get_chat_rooms_use_case.dart'
+    as _i720;
+import '../../features/chats/domain/use_case/seng_message_use_case.dart'
+    as _i439;
+import '../../features/chats/presentation/view_model/chats_bloc.dart' as _i42;
 import '../../features/orders/data/data_source/orders_data_source.dart'
     as _i872;
 import '../../features/orders/data/data_source/orders_data_source_imp.dart'
@@ -72,25 +87,34 @@ import '../../features/products/presentation/view_model/products_bloc.dart'
     as _i292;
 import '../api/api_manager.dart' as _i1047;
 import '../network/connection_checker.dart' as _i1050;
+import '../utils/shared_prefs_local_data_source.dart' as _i336;
 
 extension GetItInjectableX on _i174.GetIt {
   // initializes the registration of main-scope dependencies inside of GetIt
-  _i174.GetIt init({
+  Future<_i174.GetIt> init({
     String? environment,
     _i526.EnvironmentFilter? environmentFilter,
-  }) {
+  }) async {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
+    final appModule = _$AppModule();
+    await gh.factoryAsync<_i460.SharedPreferences>(
+      () => appModule.sharedPrefs,
+      preResolve: true,
+    );
     gh.singleton<_i1047.ApiManager>(() => _i1047.ApiManager());
-    gh.lazySingleton<_i605.LoginDataSource>(() => _i701.LoginDataSourceImpl());
     gh.lazySingleton<_i646.ProductsRemoteDataSource>(
       () => _i728.ProductsRemoteDataSourceImp(gh<_i1047.ApiManager>()),
     );
-    gh.lazySingleton<_i502.LoginRepo>(
-      () => _i201.LoginRepoImp(loginDataSource: gh<_i605.LoginDataSource>()),
-    );
     gh.lazySingleton<_i1050.NetworkInfo>(() => _i1050.NetworkInfoImpl());
+    gh.lazySingleton<_i0.ChatDataSource>(() => _i316.ChatDataSourceImp());
     gh.lazySingleton<_i814.CategoriesRemoteDataSource>(
       () => _i929.CategoriesRemoteDataSourceImp(gh<_i1047.ApiManager>()),
+    );
+    gh.lazySingleton<_i438.ChatRepo>(
+      () => _i713.ChatRepoImp(chatDataSource: gh<_i0.ChatDataSource>()),
+    );
+    gh.lazySingleton<_i336.CacheHelper>(
+      () => _i336.CacheHelper(gh<_i460.SharedPreferences>()),
     );
     gh.lazySingleton<_i525.CategoriesRepo>(
       () => _i828.CategoriesRepoImp(
@@ -101,8 +125,27 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i872.OrdersDataSource>(
       () => _i337.OrdersDataSourceImp(gh<_i974.FirebaseFirestore>()),
     );
-    gh.factory<_i37.LoginUseCase>(
-      () => _i37.LoginUseCase(authRepo: gh<_i502.LoginRepo>()),
+    gh.factory<_i113.GetChatMessagesUseCase>(
+      () => _i113.GetChatMessagesUseCase(gh<_i438.ChatRepo>()),
+    );
+    gh.factory<_i720.GetChatRoomsUseCase>(
+      () => _i720.GetChatRoomsUseCase(gh<_i438.ChatRepo>()),
+    );
+    gh.factory<_i439.SengMessageUseCase>(
+      () => _i439.SengMessageUseCase(gh<_i438.ChatRepo>()),
+    );
+    gh.lazySingleton<_i605.LoginDataSource>(
+      () => _i701.LoginDataSourceImpl(gh<_i336.CacheHelper>()),
+    );
+    gh.factory<_i42.ChatsBloc>(
+      () => _i42.ChatsBloc(
+        gh<_i720.GetChatRoomsUseCase>(),
+        gh<_i113.GetChatMessagesUseCase>(),
+        gh<_i439.SengMessageUseCase>(),
+      ),
+    );
+    gh.lazySingleton<_i502.LoginRepo>(
+      () => _i201.LoginRepoImp(loginDataSource: gh<_i605.LoginDataSource>()),
     );
     gh.lazySingleton<_i361.ProductsRepo>(
       () => _i581.ProductsRepoImp(
@@ -113,7 +156,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i132.OrdersRepo>(
       () => _i21.OrderRepoImp(gh<_i872.OrdersDataSource>()),
     );
-    gh.factory<_i542.LoginBloc>(() => _i542.LoginBloc(gh<_i37.LoginUseCase>()));
     gh.factory<_i809.AddCategoryUseCase>(
       () => _i809.AddCategoryUseCase(gh<_i525.CategoriesRepo>()),
     );
@@ -134,6 +176,12 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i1054.UploadImageUseCase>(
       () => _i1054.UploadImageUseCase(gh<_i361.ProductsRepo>()),
+    );
+    gh.factory<_i910.GetProfileDataUseCase>(
+      () => _i910.GetProfileDataUseCase(authRepo: gh<_i502.LoginRepo>()),
+    );
+    gh.factory<_i37.LoginUseCase>(
+      () => _i37.LoginUseCase(authRepo: gh<_i502.LoginRepo>()),
     );
     gh.factory<_i363.AddProductUseCase>(
       () => _i363.AddProductUseCase(gh<_i361.ProductsRepo>()),
@@ -169,6 +217,14 @@ extension GetItInjectableX on _i174.GetIt {
         uploadImageUseCase: gh<_i1054.UploadImageUseCase>(),
       ),
     );
+    gh.factory<_i542.LoginBloc>(
+      () => _i542.LoginBloc(
+        gh<_i37.LoginUseCase>(),
+        gh<_i910.GetProfileDataUseCase>(),
+      ),
+    );
     return this;
   }
 }
+
+class _$AppModule extends _i336.AppModule {}

@@ -62,7 +62,11 @@ class MyApp extends StatelessWidget {
           home: child,
         );
       },
-      child: const DashboardScreen(),
+      // child: const DashboardScreen(),
+      child: BlocProvider(
+        create: (context) => getIt<LoginBloc>(),
+        child: const LoginScreen(),
+      ),
     );
   }
 }
