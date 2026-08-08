@@ -2,7 +2,7 @@ import 'dart:math' as math;
 import 'dart:ui';
 import 'package:ecommerce_admin_app/core/dashboar_layout/presentation/view/dashboard_screen.dart';
 import 'package:ecommerce_admin_app/core/utils/app_toasts.dart';
-import 'package:ecommerce_admin_app/core/utils/widgets/custom_text_form_field.dart';
+import 'package:ecommerce_admin_app/core/common/widgets/custom_text_form_field.dart';
 import 'package:ecommerce_admin_app/features/auth/domain/entites/auth_entity_req.dart';
 import 'package:ecommerce_admin_app/features/auth/presentation/view_model/login_bloc.dart';
 import 'package:ecommerce_admin_app/features/auth/presentation/view_model/login_event.dart';

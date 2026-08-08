@@ -2,7 +2,7 @@ import 'dart:typed_data';
 
 import 'package:ecommerce_admin_app/core/constants/app_colors.dart';
 import 'package:ecommerce_admin_app/core/constants/app_strings.dart';
-import 'package:ecommerce_admin_app/core/utils/widgets/custom_text_form_field.dart';
+import 'package:ecommerce_admin_app/core/common/widgets/custom_text_form_field.dart';
 import 'package:ecommerce_admin_app/features/products/presentation/view_model/products_bloc.dart';
 import 'package:ecommerce_admin_app/features/products/presentation/view_model/products_event.dart';
 import 'package:ecommerce_admin_app/features/products/presentation/widgets/product_image_picker_widget.dart';

@@ -36,6 +36,7 @@ dependencies:
   skeletonizer: ^2.1.3
   jwt_decoder: ^2.0.1
   shared_preferences: ^2.5.5
+  universal_html: ^2.3.0
 
 dev_dependencies:
   flutter_test:
