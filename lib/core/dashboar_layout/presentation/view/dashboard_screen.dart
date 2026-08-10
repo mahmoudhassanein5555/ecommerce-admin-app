@@ -6,6 +6,8 @@ import 'package:ecommerce_admin_app/features/categories/presentation/view/catego
 import 'package:ecommerce_admin_app/features/categories/presentation/view_model/categories_bloc.dart';
 import 'package:ecommerce_admin_app/features/chats/presentation/view/chat_screen.dart';
 import 'package:ecommerce_admin_app/features/chats/presentation/view_model/chats_bloc.dart';
+import 'package:ecommerce_admin_app/features/customers/presentation/view/customers_screen.dart';
+import 'package:ecommerce_admin_app/features/customers/presentation/view_model/customers_bloc.dart';
 import 'package:ecommerce_admin_app/features/orders/presentation/view/orders_view.dart';
 import 'package:ecommerce_admin_app/features/orders/presentation/view_model/orders_bloc.dart';
 import 'package:ecommerce_admin_app/features/products/presentation/view/products_screen.dart';
@@ -239,6 +241,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           return BlocProvider(
                             create: (context) => getIt<OrdersBloc>(),
                             child: const OrdersView(),
+                          );
+                        case 4:
+                          return BlocProvider(
+                            create: (context) => getIt<CustomersBloc>(),
+                            child: const CustomersScreen(),
                           );
                         case 5:
                           return BlocProvider(

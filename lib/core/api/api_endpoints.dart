@@ -4,4 +4,6 @@ class ApiEndpoints {
   static const String categories = "categories";
   static const String upload = "files/upload";
   static const String profile = "auth/profile";
+  static const String users = "users";
+  static const String isEmailAvailable = "users/is-available";
 }
