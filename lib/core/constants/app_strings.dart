@@ -133,4 +133,39 @@ class AppStrings {
   static const String defaultAdminName = 'Admin';
   static const String noProductsFound = 'No products found';
 
+  // 👥 Users & Customers Feature Strings
+  static const String usersManagement = 'Users & Customers Management';
+  static const String manageUsersSubheadline =
+      'Manage customer profiles, administrative access, and role permissions.';
+  static const String searchUsersHint = 'Search users by name, email, or ID...';
+  static const String allUsers = 'All Users';
+  static const String adminsOnly = 'Admins';
+  static const String customersOnly = 'Customers';
+  static const String addNewAdmin = 'Add New Admin';
+  static const String userProfileTitle = 'User Profile Details';
+  static const String noUsersFoundTitle = 'No users found';
+  static const String noUsersFoundSubtitle =
+      'Try searching with a different keyword or change role filter.';
+  static const String reloadUsers = 'Reload Users';
+  static const String viewProfile = 'View Profile';
+  static const String adminCreatedSuccessTitle = 'Admin Created Successfully ✅';
+  static const String adminCreatedSuccessDesc =
+      'The new administrator account has been added.';
+  static const String emailAvailableText = 'Email is available';
+  static const String emailTakenText = 'This email is already registered';
+  static const String checkingEmailText = 'Checking email availability...';
+  static const String adminRole = 'Admin';
+  static const String customerRole = 'Customer';
+  static const String nameLabel = 'Full Name *';
+  static const String nameHint = 'e.g. Nicolas Cage';
+  static const String emailLabel = 'Email Address *';
+  static const String emailHint = 'e.g. nico@gmail.com';
+  static const String passwordLabel = 'Password *';
+  static const String passwordHint = 'At least 4 characters';
+  static const String avatarUrlLabel = 'Avatar URL *';
+  static const String avatarUrlHint = 'https://picsum.photos/800';
+  static const String createAdminButton = 'Create Admin Account';
+  static const String close = 'Close';
+  static const String userDetailsError = 'Failed to load user profile details';
 }
+

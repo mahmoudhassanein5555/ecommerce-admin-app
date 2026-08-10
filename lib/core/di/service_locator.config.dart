@@ -55,6 +55,22 @@ import '../../features/chats/domain/use_case/get_chat_rooms_use_case.dart'
 import '../../features/chats/domain/use_case/seng_message_use_case.dart'
     as _i439;
 import '../../features/chats/presentation/view_model/chats_bloc.dart' as _i42;
+import '../../features/customers/data/datasources/users_remote_data_source.dart'
+    as _i722;
+import '../../features/customers/data/datasources/users_remote_data_source_imp.dart'
+    as _i545;
+import '../../features/customers/data/repository/users_repo_imp.dart' as _i415;
+import '../../features/customers/domain/repositories/users_repo.dart' as _i649;
+import '../../features/customers/domain/usecases/check_email_availability_use_case.dart'
+    as _i256;
+import '../../features/customers/domain/usecases/create_user_use_case.dart'
+    as _i696;
+import '../../features/customers/domain/usecases/get_user_by_id_use_case.dart'
+    as _i924;
+import '../../features/customers/domain/usecases/get_users_use_case.dart'
+    as _i985;
+import '../../features/customers/presentation/view_model/customers_bloc.dart'
+    as _i1018;
 import '../../features/orders/data/data_source/orders_data_source.dart'
     as _i872;
 import '../../features/orders/data/data_source/orders_data_source_imp.dart'
@@ -105,10 +121,19 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i646.ProductsRemoteDataSource>(
       () => _i728.ProductsRemoteDataSourceImp(gh<_i1047.ApiManager>()),
     );
+    gh.lazySingleton<_i722.UsersRemoteDataSource>(
+      () => _i545.UsersRemoteDataSourceImp(gh<_i1047.ApiManager>()),
+    );
     gh.lazySingleton<_i1050.NetworkInfo>(() => _i1050.NetworkInfoImpl());
     gh.lazySingleton<_i0.ChatDataSource>(() => _i316.ChatDataSourceImp());
     gh.lazySingleton<_i814.CategoriesRemoteDataSource>(
       () => _i929.CategoriesRemoteDataSourceImp(gh<_i1047.ApiManager>()),
+    );
+    gh.lazySingleton<_i649.UsersRepo>(
+      () => _i415.UsersRepoImp(
+        gh<_i722.UsersRemoteDataSource>(),
+        gh<_i1050.NetworkInfo>(),
+      ),
     );
     gh.lazySingleton<_i438.ChatRepo>(
       () => _i713.ChatRepoImp(chatDataSource: gh<_i0.ChatDataSource>()),
@@ -156,6 +181,18 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i132.OrdersRepo>(
       () => _i21.OrderRepoImp(gh<_i872.OrdersDataSource>()),
     );
+    gh.factory<_i256.CheckEmailAvailabilityUseCase>(
+      () => _i256.CheckEmailAvailabilityUseCase(gh<_i649.UsersRepo>()),
+    );
+    gh.factory<_i696.CreateUserUseCase>(
+      () => _i696.CreateUserUseCase(gh<_i649.UsersRepo>()),
+    );
+    gh.factory<_i924.GetUserByIdUseCase>(
+      () => _i924.GetUserByIdUseCase(gh<_i649.UsersRepo>()),
+    );
+    gh.factory<_i985.GetUsersUseCase>(
+      () => _i985.GetUsersUseCase(gh<_i649.UsersRepo>()),
+    );
     gh.factory<_i809.AddCategoryUseCase>(
       () => _i809.AddCategoryUseCase(gh<_i525.CategoriesRepo>()),
     );
@@ -173,6 +210,15 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i590.GetOrdersUseCase>(
       () => _i590.GetOrdersUseCase(gh<_i132.OrdersRepo>()),
+    );
+    gh.factory<_i1018.CustomersBloc>(
+      () => _i1018.CustomersBloc(
+        getUsersUseCase: gh<_i985.GetUsersUseCase>(),
+        getUserByIdUseCase: gh<_i924.GetUserByIdUseCase>(),
+        checkEmailAvailabilityUseCase:
+            gh<_i256.CheckEmailAvailabilityUseCase>(),
+        createUserUseCase: gh<_i696.CreateUserUseCase>(),
+      ),
     );
     gh.factory<_i1054.UploadImageUseCase>(
       () => _i1054.UploadImageUseCase(gh<_i361.ProductsRepo>()),
